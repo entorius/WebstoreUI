@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.5",
     "@reduxjs/toolkit": "^1.9.5",
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -17,7 +20,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.0",
-    "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-stomp": "^5.1.0",
     "sockjs": "^0.3.24",
@@ -49,6 +51,7 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "react-router-dom": "^6.13.0"
   }
 }
