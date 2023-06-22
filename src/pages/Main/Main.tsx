@@ -1,48 +1,30 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Button from '@mui/material/Button';
 import LogoutButton from '../../components/logoutButton/LogoutButton';
-import { User, useAuth0 } from "@auth0/auth0-react";
+import { Auth0ContextInterface, User} from "@auth0/auth0-react";
 import { CodeSnippet } from "../../components/CodeSnippet";
+import { withAuth0 } from '@auth0/auth0-react';
 
 type MainProps = {
   // using `interface` is also ok
+  auth0: Auth0ContextInterface<User>;
   message: string;
 };
 
-type MainState = {
-  count: number; // like this
-  isAuthenticated: boolean;
-  user: User;
-};
+class Main extends Component<MainProps> {
 
-class Main extends Component<MainProps, MainState> {
-  componentDidMount() {
-    this.setState({
-      ...this.state,
-      isAuthenticated: useAuth0().isAuthenticated,
-      user: useAuth0()
-    })
-  }
-
-  constructor(props: MainProps) {
-    super(props);
-    this.state = {
-      count: 0,
-      isAuthenticated: false,
-      user: {},};
-  }
-  
   render() {
+    const {isAuthenticated, user} = this.props.auth0;
     return (
       <div>
         <LogoutButton/>
-        <div> {this.state.isAuthenticated && (
-          <div>
-            <img src={this.state.user?.picture} alt={this.state.user?.name} />
-            <h2>{this.state.user?.name}</h2>
-            <p>{this.state.user?.email}</p>
-          </div>
-        )}
+        <div> {isAuthenticated && (
+        <div>
+          <img src={user?.picture} alt={user?.name} />
+          <h2>{user?.name}</h2>
+          <p>{user?.email}</p>
+        </div>
+      )}
         <CodeSnippet title="Public Message" code={this.props.message} />
         </div>
       </div>
@@ -50,4 +32,4 @@ class Main extends Component<MainProps, MainState> {
   }
 }
 
-export default Main;
+export default withAuth0(Main);

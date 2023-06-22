@@ -22,20 +22,18 @@ console.log(audience);
 
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      authorizationParams={{
-        audience: audience,
-        redirect_uri: redirectUri
-      }}
-      >
-        <App />
-      </Auth0Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    authorizationParams={{
+      audience: audience,
+      redirect_uri: redirectUri
+    }}
+    >
+      <App />
+    </Auth0Provider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
